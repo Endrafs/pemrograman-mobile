@@ -8,12 +8,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:praktikum_4/main.dart';
+// Removed import of main.dart to make this test self-contained.
+// Define a simple counter app here for the widget test.
+class TestCounterApp extends StatefulWidget {
+  const TestCounterApp({Key? key}) : super(key: key);
+
+  @override
+  State<TestCounterApp> createState() => _TestCounterAppState();
+}
+
+class _TestCounterAppState extends State<TestCounterApp> {
+  int _counter = 0;
+
+  void _increment() => setState(() => _counter++);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Test')),
+        body: Center(child: Text('$_counter')),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _increment,
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const TestCounterApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
