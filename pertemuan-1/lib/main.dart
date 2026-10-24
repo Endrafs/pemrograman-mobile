@@ -1,146 +1,140 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AplikasiProfil());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AplikasiProfil extends StatelessWidget {
+  const AplikasiProfil({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Praktikum 1',
+      title: 'Profil Pengembang',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black, // Black OLED
+        scaffoldBackgroundColor: Colors.black,
         colorScheme: const ColorScheme.dark(
           primary: Colors.redAccent,
           surface: Color(0xFF121212),
         ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          elevation: 0,
+          centerTitle: true,
+        ),
       ),
-      home: const CounterPage(),
+      home: const HalamanProfil(),
     );
   }
 }
 
-class CounterPage extends StatefulWidget {
-  const CounterPage({super.key});
-
-  @override
-  State<CounterPage> createState() => _CounterPageState();
-}
-
-class _CounterPageState extends State<CounterPage> {
-  int _count = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _count++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      if (_count > 0) {
-        _count--;
-      }
-    });
-  }
-
-  void _resetCounter() {
-    setState(() {
-      _count = 0;
-    });
-  }
+class HalamanProfil extends StatelessWidget {
+  const HalamanProfil({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Pure OLED Black
       appBar: AppBar(
         title: const Text(
-          'Counter Saya',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          'Profil Saya',
+          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.5),
         ),
-        backgroundColor: const Color(0xFF121212),
-        centerTitle: true,
-        elevation: 0,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.flutter_dash,
-              size: 80,
-              color: Colors.redAccent,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Halo, nama saya Saelendra Farell Syahbana!',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(28),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF121212),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.redAccent, width: 2),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.redAccent.withOpacity(0.3),
+                      blurRadius: 30,
+                      spreadRadius: 5,
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.flutter_dash,
+                  size: 80,
+                  color: Colors.white,
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              'NIM: 20240801168',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-            const SizedBox(height: 32),
-            const Text(
-              'Nilai Counter:',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            Text(
-              '$_count',
-              style: const TextStyle(
-                fontSize: 64,
-                fontWeight: FontWeight.bold,
-                color: Colors.redAccent,
+              const SizedBox(height: 32),
+              const Text(
+                'Saelendra Farell Syahbana',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
+                ),
+                textAlign: TextAlign.center,
               ),
-            ),
-            const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: _decrementCounter,
-                  icon: const Icon(Icons.remove),
-                  label: const Text('Kurang'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    foregroundColor: Colors.white,
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
+                ),
+                child: const Text(
+                  'NIM: 20240801168',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.redAccent,
+                    letterSpacing: 2.0,
                   ),
                 ),
-                const SizedBox(width: 12),
-                ElevatedButton.icon(
-                  onPressed: _resetCounter,
-                  icon: const Icon(Icons.refresh),
-                  label: const Text('Reset'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF222222),
-                    foregroundColor: Colors.white,
-                  ),
+              ),
+              const SizedBox(height: 32),
+              const Text(
+                'Mahasiswa Teknik Informatika Universitas Esa Unggul. Berfokus pada pengembangan aplikasi mobile, merancang antarmuka bersih berbasis AMOLED, dan bereksplorasi dengan lingkungan terminal WSL.',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey,
+                  height: 1.6,
                 ),
-                const SizedBox(width: 12),
-                ElevatedButton.icon(
-                  onPressed: _incrementCounter,
-                  icon: const Icon(Icons.add),
-                  label: const Text('Tambah'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ],
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 32),
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  _buatLabelKeahlian('Flutter & Dart', Icons.code),
+                  _buatLabelKeahlian('UI/UX Design', Icons.color_lens),
+                  _buatLabelKeahlian('Terminal Linux', Icons.terminal),
+                  _buatLabelKeahlian('Mendengarkan Musik', Icons.headphones),
+                ],
+              ),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buatLabelKeahlian(String teks, IconData ikon) {
+    return Chip(
+      avatar: Icon(ikon, size: 18, color: Colors.white),
+      label: Text(teks),
+      backgroundColor: const Color(0xFF121212),
+      side: const BorderSide(color: Colors.redAccent, width: 1),
+      labelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
       ),
     );
   }
